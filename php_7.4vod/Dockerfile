@@ -40,4 +40,4 @@ RUN mkdir /etc/composer \
 
 COPY init-php.sh /init.sh
 
-ENTRYPOINT ["/init.sh"]
+# ENTRYPOINT ["/init.sh"]
