@@ -38,6 +38,6 @@ RUN mkdir /etc/composer \
     && rm /etc/composer/installer \
     && chmod a+x /bin/composer
 
-COPY init-php.sh /init.sh
+# COPY init-php.sh /init.sh
 
 # ENTRYPOINT ["/init.sh"]
