@@ -11,7 +11,7 @@ ENV DEPENDENSIES="git libzip mysql-client curl libmcrypt libmcrypt-dev openssh-c
     libzip-dev \
     wget"
 ENV BUILD_DEPENDENSIES="g++ make autoconf"
-ENV EXTENSIONS="pdo pdo_mysql mysqli soap intl zip bcmath xml sockets gd bz2 opcache mbstring pcntl xsl pspell"
+ENV EXTENSIONS="pdo pdo_mysql mysqli soap intl zip bcmath xml sockets gd bz2 opcache mbstring pcntl xsl pspell zip"
 ENV COMPOSER_VERSION="1.9.0"
 
 #RUN docker-php-ext-enable mcrypt
