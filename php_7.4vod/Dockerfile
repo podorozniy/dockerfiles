@@ -1,7 +1,7 @@
 FROM php:7.4-fpm-alpine
 
 ARG ENVIRONMENT="production"
-ENV DEPENDENSIES="bash git libzip mysql-client curl libmcrypt libmcrypt-dev openssh-client icu-dev libxml2-dev libxslt-dev espeak libbz2 php7-bz2 php7-bcmath php-bcmath php-intl php-pear \
+ENV DEPENDENSIES="curl bash git libzip mysql-client curl libmcrypt libmcrypt-dev openssh-client icu-dev libxml2-dev libxslt-dev espeak libbz2 php7-bz2 php7-bcmath php-bcmath php-intl php-pear \
     bzip2 \
     bzip2-dev \
     make \
