@@ -1,17 +1,41 @@
-FROM php:7.4-alpine
-WORKDIR '/app'
-RUN apk update && apk upgrade\
-    && apk add --no-cache libbz2 php7-bz2 php7-bcmath php-bcmath php-intl php-pear \
+FROM php:7.4-fpm-alpine
+
+ARG ENVIRONMENT="production"
+ENV DEPENDENSIES="git libzip mysql-client curl libmcrypt libmcrypt-dev openssh-client icu-dev libxml2-dev libxslt-dev espeak libbz2 php7-bz2 php7-bcmath php-bcmath php-intl php-pear \
     bzip2 \
-    git \
     bzip2-dev \
     make \
     unzip \
     zlib-dev \
     libpng-dev \
-    wget
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-RUN apk add --no-cache pcre-dev $PHPIZE_DEPS \
-        && pecl install redis \
-        && docker-php-ext-enable redis.so
-RUN docker-php-ext-install gd bcmath zip bz2 pdo mysqli pdo_mysql bcmath intl opcache sockets mbstring pcntl xsl pspell
+    libzip-dev \
+    wget"
+ENV BUILD_DEPENDENSIES="g++ make autoconf"
+ENV EXTENSIONS="pdo pdo_mysql mysqli soap intl zip bcmath xml sockets gd bz2 opcache mbstring pcntl xsl pspell"
+ENV COMPOSER_VERSION="1.9.0"
+
+#RUN docker-php-ext-enable mcrypt
+
+#RUN docker-php-ext-install mcrypt
+#RUN docker-php-ext-configure mcrypt
+
+RUN apk update && apk upgrade \
+    && apk add --no-cache --virtual .build-deps ${PHPIZE_DEPS} ${BUILD_DEPENDENSIES} \
+    && apk add --no-cache ${DEPENDENSIES} \
+    && docker-php-ext-install ${EXTENSIONS} \
+    && pecl install redis \
+    && docker-php-ext-enable redis \
+    && apk del .build-deps \
+    && rm -rf /tmp/* \
+    && rm -rf /var/cache/apk/*
+
+# INSTALL composer
+RUN mkdir /etc/composer \
+    && wget https://getcomposer.org/installer -P /etc/composer \
+    && cd /etc/composer && php ./installer  --filename=composer --verion=${COMPOSER_VERSION} --install-dir=/bin \
+    && rm /etc/composer/installer \
+    && chmod a+x /bin/composer
+
+COPY init-php.sh /init.sh
+
+ENTRYPOINT ["/init.sh"]
