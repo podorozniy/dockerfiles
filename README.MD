@@ -12,5 +12,5 @@ app.push("vod74-alpine")
 ```
 4/ push button "Scan Multibranch Pipeline Now" in 
 ```
-https://jenkins.dev-integrations.com/view/Test/job/Docker%20Hub%20images/
+https://jenkins.dev-integrations.com/view/DevOPs/job/dockerhub-images-pipeline/
 ```
