@@ -9,5 +9,7 @@ RUN apk update && apk upgrade\
     unzip \
     wget
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-RUN php -i | echo
-RUN docker-php-ext-install gd bcmath zip bz2 pdo mysqli pdo_mysql php7.2-redis php-bcmath php-intl opcache sockets mbstring pcntl xsl pspell
+RUN apk add --no-cache pcre-dev $PHPIZE_DEPS \
+        && pecl install redis \
+        && docker-php-ext-enable redis.so
+RUN docker-php-ext-install gd bcmath zip bz2 pdo mysqli pdo_mysql php-bcmath php-intl opcache sockets mbstring pcntl xsl pspell
