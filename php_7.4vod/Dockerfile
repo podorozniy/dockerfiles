@@ -10,7 +10,3 @@ RUN apk update && apk upgrade\
     wget
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN docker-php-ext-install gd bcmath zip bz2 pdo mysqli pdo_mysql php-redis php-bcmath php-intl opcache sockets mbstring pcntl xsl pspell
-
-RUN curl -sS https://getcomposer.org/installer | \
-    php -- --install-dir=/usr/bin/ --filename=composer
-RUN composer install --no-dev --no-interaction -o
