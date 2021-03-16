@@ -7,6 +7,7 @@ RUN apk update && apk upgrade\
     bzip2-dev \
     make \
     unzip \
+    zlib-dev \
     wget
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN apk add --no-cache pcre-dev $PHPIZE_DEPS \
