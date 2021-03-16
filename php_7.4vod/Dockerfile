@@ -10,7 +10,7 @@ ENV DEPENDENSIES="git libzip mysql-client curl libmcrypt libmcrypt-dev openssh-c
     libpng-dev \
     libzip-dev \
     oniguruma-dev \
-    libaspell-dev \
+    aspell-dev \
     wget"
 ENV BUILD_DEPENDENSIES="g++ make autoconf"
 ENV EXTENSIONS="pdo pdo_mysql mysqli soap intl zip bcmath xml sockets gd bz2 opcache mbstring pcntl xsl pspell zip"
