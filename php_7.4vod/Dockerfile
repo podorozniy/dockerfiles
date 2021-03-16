@@ -1,7 +1,7 @@
 FROM php:7.4-alpine
 WORKDIR '/app'
 RUN apk update && apk upgrade\
-    && apk add --no-cache libbz2 php7-bz2 php7-bcmath mysqli pdo_mysql php-redis php-bcmath php-intl librabbitmq-dev php-pear \
+    && apk add --no-cache libbz2 php7-bz2 php7-bcmath php-bcmath php-intl php-pear \
     bzip2 \
     git \
     bzip2-dev \
