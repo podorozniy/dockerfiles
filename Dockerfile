@@ -11,6 +11,7 @@ ENV DEPENDENSIES="curl bash git libzip mysql-client libmcrypt libmcrypt-dev open
     libzip-dev \
     oniguruma-dev \
     aspell-dev \
+    libsodium \
     wget"
 ENV BUILD_DEPENDENSIES="g++ make autoconf"
 ENV EXTENSIONS="pdo pdo_mysql mysqli soap sodium intl bcmath xml sockets gd bz2 opcache mbstring pcntl xsl pspell zip"
