@@ -1,7 +1,7 @@
 FROM php:7.4-fpm-alpine
 
 ARG ENVIRONMENT="production"
-ENV DEPENDENSIES="curl bash git libzip mysql-client curl libmcrypt libmcrypt-dev openssh-client icu-dev libxml2-dev libxslt-dev espeak libbz2 php7-bz2 php7-bcmath php-bcmath php-intl php-pear \
+ENV DEPENDENSIES="curl bash git libzip mysql-client libmcrypt libmcrypt-dev openssh-client icu-dev libxml2-dev libxslt-dev espeak libbz2 php7-bz2 php7-bcmath php-bcmath php-intl php-pear \
     bzip2 \
     bzip2-dev \
     make \
@@ -13,7 +13,7 @@ ENV DEPENDENSIES="curl bash git libzip mysql-client curl libmcrypt libmcrypt-dev
     aspell-dev \
     wget"
 ENV BUILD_DEPENDENSIES="g++ make autoconf"
-ENV EXTENSIONS="pdo pdo_mysql mysqli soap sodium intl zip bcmath xml sockets gd bz2 opcache mbstring pcntl xsl pspell zip"
+ENV EXTENSIONS="pdo pdo_mysql mysqli soap sodium intl bcmath xml sockets gd bz2 opcache mbstring pcntl xsl pspell zip"
 ENV COMPOSER_VERSION="1.9.0"
 
 #RUN docker-php-ext-enable mcrypt
