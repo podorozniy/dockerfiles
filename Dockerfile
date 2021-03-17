@@ -14,7 +14,6 @@ ENV DEPENDENSIES="curl bash git libzip mysql-client libmcrypt libmcrypt-dev open
     libsodium \
     libsodium-dev \
     librabbitmq-dev \
-    librabbitmq \
     wget"
 ENV BUILD_DEPENDENSIES="g++ make autoconf"
 ENV EXTENSIONS="pdo pdo_mysql mysqli soap sodium intl bcmath xml sockets gd bz2 opcache mbstring pcntl xsl pspell zip"
