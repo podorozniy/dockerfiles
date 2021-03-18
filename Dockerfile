@@ -1,7 +1,7 @@
 FROM php:7.4-fpm-alpine
 
 ARG ENVIRONMENT="production"
-ENV DEPENDENSIES="curl bash git libzip mysql-client libmcrypt libmcrypt-dev openssh-client icu-dev libxml2-dev libxslt-dev espeak libbz2 php7-bz2 php7-bcmath php-bcmath php-intl php-pear \
+ENV DEPENDENSIES="redis curl bash git libzip mysql-client libmcrypt libmcrypt-dev openssh-client icu-dev libxml2-dev libxslt-dev espeak libbz2 php7-bz2 php7-bcmath php-bcmath php-intl php-pear \
     bzip2 \
     bzip2-dev \
     make \
@@ -13,8 +13,6 @@ ENV DEPENDENSIES="curl bash git libzip mysql-client libmcrypt libmcrypt-dev open
     aspell-dev \
     libsodium \
     libsodium-dev \
-    # librabbitmq-dev \
-    # librabbitmq \
     wget"
 ENV BUILD_DEPENDENSIES="g++ make autoconf"
 ENV EXTENSIONS="pdo pdo_mysql mysqli soap sodium intl bcmath xml sockets gd bz2 opcache mbstring pcntl xsl pspell zip"
@@ -34,7 +32,6 @@ RUN apk update && apk upgrade \
     && docker-php-ext-enable apcu --ini-name 10-docker-php-ext-apcu.ini \
     && docker-php-ext-enable apc --ini-name 20-docker-php-ext-apc.ini \
     && pecl install redis && docker-php-ext-enable redis \
-    && pecl install amqp && docker-php-ext-enable amqp \
     && apk del .build-deps \
     && rm -rf /tmp/* \
     && rm -rf /var/cache/apk/*
