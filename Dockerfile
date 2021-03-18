@@ -32,7 +32,6 @@ RUN apk update && apk upgrade \
     && docker-php-ext-enable apcu --ini-name 10-docker-php-ext-apcu.ini \
     && docker-php-ext-enable apc --ini-name 20-docker-php-ext-apc.ini \
     && pecl install redis && docker-php-ext-enable redis \
-    && pecl install amqp && docker-php-ext-enable amqp \
     && apk del .build-deps \
     && rm -rf /tmp/* \
     && rm -rf /var/cache/apk/*
