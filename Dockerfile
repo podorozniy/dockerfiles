@@ -13,7 +13,7 @@ ENV DEPENDENSIES="redis curl bash git libzip mysql-client libmcrypt libmcrypt-de
     aspell-dev \
     wget"
 ENV BUILD_DEPENDENSIES="g++ make autoconf"
-ENV EXTENSIONS="pdo pdo_mysql mysqli soap sodium intl bcmath xml sockets gd bz2 opcache mbstring pcntl xsl pspell zip"
+ENV EXTENSIONS="pdo pdo_mysql mysqli soap intl bcmath xml sockets gd bz2 opcache mbstring pcntl xsl pspell zip"
 ENV COMPOSER_VERSION="1.9.0"
 
 #RUN docker-php-ext-enable mcrypt
