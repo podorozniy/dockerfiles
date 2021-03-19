@@ -11,7 +11,7 @@ node {
        stage('Push image') {
                                                   docker.withRegistry('https://registry.hub.docker.com', 'DockerHub') {            
        app.push("${env.BUILD_NUMBER}")            
-       app.push("kiosk-alpine")        
+       app.push("pw-alpine")        
               }    
            }
         }
