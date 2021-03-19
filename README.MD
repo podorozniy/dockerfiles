@@ -9,7 +9,7 @@ For build and push image you have to:
 app = docker.build("playwing/php")    
 ```
 ```          
-app.push("vod74-alpine")     
+app.push("pw-alpine")     
 ```
 4/ push button "Scan Multibranch Pipeline Now" in
 ```
