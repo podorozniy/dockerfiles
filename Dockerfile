@@ -1,43 +1,11 @@
+#FROM php:7.4
 FROM php:7.4-fpm-alpine
 
-ARG ENVIRONMENT="production"
-ENV DEPENDENSIES="curl bash git libzip mysql-client curl libmcrypt libmcrypt-dev openssh-client icu-dev libxml2-dev libxslt-dev espeak libbz2 php7-bz2 php7-bcmath php-bcmath php-intl php-pear \
-    bzip2 \
-    bzip2-dev \
-    make \
-    unzip \
-    zlib-dev \
-    libpng-dev \
-    libzip-dev \
-    oniguruma-dev \
-    aspell-dev \
-    wget"
-ENV BUILD_DEPENDENSIES="g++ make autoconf"
-ENV EXTENSIONS="pdo pdo_mysql mysqli soap intl zip bcmath xml sockets gd bz2 opcache mbstring pcntl xsl pspell zip"
-ENV COMPOSER_VERSION="1.9.0"
+RUN apk update --no-cache && apk add git mysql-client
+RUN docker-php-ext-install pdo_mysql
 
-#RUN docker-php-ext-enable mcrypt
 
-#RUN docker-php-ext-install mcrypt
-#RUN docker-php-ext-configure mcrypt
-
-RUN apk update && apk upgrade \
-    && apk add --no-cache --virtual .build-deps ${PHPIZE_DEPS} ${BUILD_DEPENDENSIES} \
-    && apk add --no-cache ${DEPENDENSIES} \
-    && docker-php-ext-install ${EXTENSIONS} \
-    && pecl install redis \
-    && docker-php-ext-enable redis \
-    && apk del .build-deps \
-    && rm -rf /tmp/* \
-    && rm -rf /var/cache/apk/*
-
-# INSTALL composer
-RUN mkdir /etc/composer \
-    && wget https://getcomposer.org/installer -P /etc/composer \
-    && cd /etc/composer && php ./installer  --filename=composer --verion=${COMPOSER_VERSION} --install-dir=/bin \
-    && rm /etc/composer/installer \
-    && chmod a+x /bin/composer
-
-# COPY init-php.sh /init.sh
-
-# ENTRYPOINT ["/init.sh"]
+RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+RUN php -r "if (hash_file('sha384', 'composer-setup.php') === '756890a4488ce9024fc62c56153228907f1545c228516cbf63f885e036d37e9a59d27d63f46af1d4d07ee0f76181c7d3') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+RUN php composer-setup.php --version=1.10.20
+RUN php -r "unlink('composer-setup.php');"
