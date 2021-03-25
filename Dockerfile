@@ -41,6 +41,8 @@ RUN mkdir /etc/composer \
     && rm /etc/composer/installer \
     && chmod a+x /bin/composer
 
+RUN echo 'memory_limit = 512M' >> /usr/local/etc/php/conf.d/docker-php-memlimit.ini
+
 # COPY init-php.sh /init.sh
 
 # ENTRYPOINT ["/init.sh"]
